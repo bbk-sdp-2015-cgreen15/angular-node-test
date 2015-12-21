@@ -43,4 +43,19 @@ Auth.prototype.testAuth = function (username, password) {
     return auth;
 };
 
+Auth.prototype.authWrapper = function authWrapper(req, res) {
+
+    var self = this;
+
+    var body = req.body;
+    var username = body.username || '';
+    var password = body.password || '';
+
+    var auth = self.testAuth(username, password);
+    res.setHeader('Content-Type', 'application/json');
+    res.send(JSON.stringify(auth));
+
+};
+
+
 module.exports = Auth;

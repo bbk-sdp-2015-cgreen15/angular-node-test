@@ -2,6 +2,8 @@
 
 var express = require('express');
 var bodyParser = require('body-parser');
+var Auth = require('./auth');
+var auth = new Auth(' dummy connection string ');
 
 var APP = function (port) {
 
@@ -21,6 +23,11 @@ var APP = function (port) {
     app.listen(port, function () {
         console.log('App started on port ' + port);
     });
+
+    app.route('/auth')
+        .post(function (req, res, next) {
+            auth.authWrapper(req, res, next);
+        });
 
     return {
         app: app
