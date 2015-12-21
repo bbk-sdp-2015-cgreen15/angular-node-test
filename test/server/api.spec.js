@@ -1,13 +1,31 @@
 var expect = require('chai').expect;
 
-describe(' App is instantiated   ', function () {
+describe(' Backend Code ', function () {
 
-    var App = require(process.cwd() + '/server/app.js');
-    var appObj = new App(8001);
-    var app = appObj.app;
+    describe(' App is instantiated   ', function () {
 
-    it(' app is a function ', function () {
-        expect(typeof app).to.equal('function');
+        var App = require(process.cwd() + '/server/app.js');
+        var appObj = new App(8001);
+        var app = appObj.app;
+
+        it(' app is a function ', function () {
+            expect(typeof app).to.equal('function');
+        });
+
+    });
+
+    describe(' Mongo Logger is instantiated   ', function () {
+
+        var ML = require(process.cwd() + '/server/mlogger.js');
+
+        it(' mongo logger is instantiated ', function () {
+
+            var mlogger = new ML('mock mongo connection string');
+
+            expect(typeof mlogger).to.equal('object');
+            expect(typeof mlogger.log).to.equal('function');
+        });
+
     });
 
 });
