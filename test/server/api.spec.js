@@ -18,12 +18,27 @@ describe(' Backend Code ', function () {
 
         var ML = require(process.cwd() + '/server/mlogger.js');
 
-        it(' mongo logger is instantiated ', function () {
+        it(' mongo logger has correct attributes ', function () {
 
             var mlogger = new ML('mock mongo connection string');
 
             expect(typeof mlogger).to.equal('object');
             expect(typeof mlogger.log).to.equal('function');
+        });
+
+    });
+
+    describe(' Auth Module is instantiated   ', function () {
+
+        var Auth = require(process.cwd() + '/server/auth.js');
+
+
+        it(' auth module has expected authorisation test function ', function () {
+
+            var auth = new Auth('mock mongo connection string');
+
+            expect(typeof auth).to.equal('object');
+            expect(typeof auth.testAuth).to.equal('function');
         });
 
     });
